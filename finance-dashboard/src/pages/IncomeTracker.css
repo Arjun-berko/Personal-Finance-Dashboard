@@ -1,0 +1,23 @@
+.income-tracker {
+    padding: 20px;
+}
+
+.income-form {
+    margin-bottom: 20px;
+}
+
+.income-form input,
+.income-form button {
+    margin-right: 10px;
+}
+
+.income-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.income-list li {
+    margin-bottom: 10px;
+}
+
+/* Add more styles as needed */

@@ -1,0 +1,23 @@
+.investment-portfolio {
+    padding: 20px;
+}
+
+.investment-form {
+    margin-bottom: 20px;
+}
+
+.investment-form input,
+.investment-form button {
+    margin-right: 10px;
+}
+
+.investment-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.investment-list li {
+    margin-bottom: 10px;
+}
+
+/* Add more styles as needed */

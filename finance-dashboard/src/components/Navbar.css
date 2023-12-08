@@ -1,0 +1,43 @@
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.navbar-logo a {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+}
+
+.navbar-links li {
+    padding: 0 15px;
+}
+
+.navbar-links li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navbar-links li a:hover {
+    color: #04c;
+}
+
+
+.navbar-links li a.active {
+    color: #04c; /* Change this to your preferred active link color */
+    font-weight: bold; /* Example of additional styling for active link */
+}

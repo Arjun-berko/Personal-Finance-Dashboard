@@ -1,0 +1,23 @@
+.budget-planner {
+    padding: 20px;
+}
+
+.budget-form {
+    margin-bottom: 20px;
+}
+
+.budget-form input,
+.budget-form button {
+    margin-right: 10px;
+}
+
+.budget-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.budget-list li {
+    margin-bottom: 10px;
+}
+
+/* Add more styles as needed */

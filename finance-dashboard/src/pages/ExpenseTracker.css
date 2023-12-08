@@ -1,0 +1,23 @@
+.expense-tracker {
+    padding: 20px;
+}
+
+.expense-form {
+    margin-bottom: 20px;
+}
+
+.expense-form input,
+.expense-form button {
+    margin-right: 10px;
+}
+
+.expense-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.expense-list li {
+    margin-bottom: 10px;
+}
+
+/* Add more styles as needed */
