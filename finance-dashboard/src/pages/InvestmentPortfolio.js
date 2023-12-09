@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import './InvestmentPortfolio.css'; // Importing the CSS file for styling
+import React, { useContext, useState } from 'react';
+import { FinanceContext } from '../context/FinanceContext'; // Import the FinanceContext
+import './InvestmentPortfolio.css';
 
 const InvestmentPortfolio = () => {
-    const [investments, setInvestments] = useState([]);
+    const { investments, addInvestment } = useContext(FinanceContext); // Use FinanceContext
     const [investmentName, setInvestmentName] = useState('');
     const [investmentValue, setInvestmentValue] = useState('');
 
@@ -14,13 +15,13 @@ const InvestmentPortfolio = () => {
         setInvestmentValue(event.target.value);
     };
 
-    const addInvestment = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        const newInvestment = {
+        // Use addInvestment from FinanceContext
+        addInvestment({
             name: investmentName,
             value: parseFloat(investmentValue) // Convert string to number
-        };
-        setInvestments([...investments, newInvestment]);
+        });
         // Reset the form fields
         setInvestmentName('');
         setInvestmentValue('');
@@ -29,7 +30,7 @@ const InvestmentPortfolio = () => {
     return (
         <div className="investment-portfolio">
             <h2>Investment Portfolio</h2>
-            <form onSubmit={addInvestment} className="investment-form">
+            <form onSubmit={handleSubmit} className="investment-form">
                 <input type="text" placeholder="Investment Name" value={investmentName} onChange={handleInvestmentNameChange} required />
                 <input type="number" placeholder="Value" value={investmentValue} onChange={handleInvestmentValueChange} required />
                 <button type="submit">Add Investment</button>

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import './IncomeTracker.css'; // Importing the CSS file for styling
+import React, { useContext, useState } from 'react';
+import { FinanceContext } from '../context/FinanceContext'; // Import the FinanceContext
+import './IncomeTracker.css';
 
 const IncomeTracker = () => {
-    const [incomes, setIncomes] = useState([]);
+    const { incomes, addIncome } = useContext(FinanceContext); // Use FinanceContext
     const [source, setSource] = useState('');
     const [amount, setAmount] = useState('');
 
@@ -14,13 +15,13 @@ const IncomeTracker = () => {
         setAmount(event.target.value);
     };
 
-    const addIncome = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        const newIncome = {
+        // Use addIncome from FinanceContext
+        addIncome({
             source: source,
             amount: parseFloat(amount) // Convert string to number
-        };
-        setIncomes([...incomes, newIncome]);
+        });
         // Reset the form fields
         setSource('');
         setAmount('');
@@ -29,7 +30,7 @@ const IncomeTracker = () => {
     return (
         <div className="income-tracker">
             <h2>Income Tracker</h2>
-            <form onSubmit={addIncome} className="income-form">
+            <form onSubmit={handleSubmit} className="income-form"> {/* Updated form handler */}
                 <input type="text" placeholder="Source" value={source} onChange={handleSourceChange} required />
                 <input type="number" placeholder="Amount" value={amount} onChange={handleAmountChange} required />
                 <button type="submit">Add Income</button>

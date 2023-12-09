@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { FinanceContext } from '../context/FinanceContext'; // Import the FinanceContext
 import './ExpenseTracker.css';
 
 const ExpenseTracker = () => {
-    const [expenses, setExpenses] = useState([]);
+    const { expenses, addExpense } = useContext(FinanceContext); // Use FinanceContext
     const [description, setDescription] = useState('');
     const [amount, setAmount] = useState('');
 
@@ -14,13 +15,13 @@ const ExpenseTracker = () => {
         setAmount(event.target.value);
     };
 
-    const addExpense = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        const newExpense = {
+        // Use addExpense from FinanceContext
+        addExpense({
             description: description,
             amount: parseFloat(amount) // Convert string to number
-        };
-        setExpenses([...expenses, newExpense]);
+        });
         // Reset the form fields
         setDescription('');
         setAmount('');
@@ -29,7 +30,7 @@ const ExpenseTracker = () => {
     return (
         <div className="expense-tracker">
             <h2>Expense Tracker</h2>
-            <form onSubmit={addExpense} className="expense-form">
+            <form onSubmit={handleSubmit} className="expense-form"> {/* Updated form handler */}
                 <input type="text" placeholder="Description" value={description} onChange={handleDescriptionChange} required />
                 <input type="number" placeholder="Amount" value={amount} onChange={handleAmountChange} required />
                 <button type="submit">Add Expense</button>

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import './BudgetPlanner.css'; // Importing the CSS file for styling
+import React, { useContext, useState } from 'react';
+import { FinanceContext } from '../context/FinanceContext'; // Import the FinanceContext
+import './BudgetPlanner.css';
 
 const BudgetPlanner = () => {
-    const [budgets, setBudgets] = useState([]);
+    const { budgets, setBudget } = useContext(FinanceContext); // Use FinanceContext
     const [category, setCategory] = useState('');
     const [amount, setAmount] = useState('');
 
@@ -14,13 +15,13 @@ const BudgetPlanner = () => {
         setAmount(event.target.value);
     };
 
-    const addBudget = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        const newBudget = {
+        // Use setBudget from FinanceContext
+        setBudget({
             category: category,
             amount: parseFloat(amount) // Convert string to number
-        };
-        setBudgets([...budgets, newBudget]);
+        });
         // Reset the form fields
         setCategory('');
         setAmount('');
@@ -29,7 +30,7 @@ const BudgetPlanner = () => {
     return (
         <div className="budget-planner">
             <h2>Budget Planner</h2>
-            <form onSubmit={addBudget} className="budget-form">
+            <form onSubmit={handleSubmit} className="budget-form">
                 <input type="text" placeholder="Category" value={category} onChange={handleCategoryChange} required />
                 <input type="number" placeholder="Amount" value={amount} onChange={handleAmountChange} required />
                 <button type="submit">Set Budget</button>
