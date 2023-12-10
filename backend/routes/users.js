@@ -1,15 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const { registerUser, loginUser, getUserProfile } = require('../controllers/userController');
+const auth = require('../middleware/auth');
 
-// Placeholder for user controller functions
-router.post('/register', (req, res) => {
-    // TODO: Add user registration logic here
-});
-router.post('/login', (req, res) => {
-    // TODO: Add user login logic here
-});
-router.get('/profile', (req, res) => {
-    // TODO: Add user profile retrieval logic here
-});
+router.post('/register', registerUser);
+router.post('/login', loginUser);
+router.get('/profile', auth, getUserProfile); // Protect this route
 
 module.exports = router;

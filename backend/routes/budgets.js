@@ -1,18 +1,17 @@
 const express = require('express');
 const router = express.Router();
+const { addBudget, getAllBudgets, updateBudget, deleteBudget } = require('../controllers/budgetController');
 
-// Placeholder for budget controller functions
-router.post('/', (req, res) => {
-    // TODO: Add budget creation logic here
-});
-router.get('/', (req, res) => {
-    // TODO: Add logic to list all budgets
-});
-router.put('/:id', (req, res) => {
-    // TODO: Add budget update logic here
-});
-router.delete('/:id', (req, res) => {
-    // TODO: Add budget deletion logic here
-});
+// Create a new budget
+router.post('/', addBudget);
+
+// Get all budgets
+router.get('/', getAllBudgets);
+
+// Update a specific budget by ID
+router.put('/:id', updateBudget);
+
+// Delete a specific budget by ID
+router.delete('/:id', deleteBudget);
 
 module.exports = router;

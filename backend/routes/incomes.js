@@ -1,18 +1,17 @@
 const express = require('express');
 const router = express.Router();
+const { addIncome, getAllIncomes, updateIncome, deleteIncome } = require('../controllers/incomeController');
 
-// Placeholder for income controller functions
-router.post('/', (req, res) => {
-    // TODO: Add income creation logic here
-});
-router.get('/', (req, res) => {
-    // TODO: Add logic to list all incomes
-});
-router.put('/:id', (req, res) => {
-    // TODO: Add income update logic here
-});
-router.delete('/:id', (req, res) => {
-    // TODO: Add income deletion logic here
-});
+// Create a new income
+router.post('/', addIncome);
+
+// Get all incomes
+router.get('/', getAllIncomes);
+
+// Update a specific income by ID
+router.put('/:id', updateIncome);
+
+// Delete a specific income by ID
+router.delete('/:id', deleteIncome);
 
 module.exports = router;
