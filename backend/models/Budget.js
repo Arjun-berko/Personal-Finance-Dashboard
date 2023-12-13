@@ -1,16 +1,26 @@
 const mongoose = require('mongoose');
 
-// Define an array of allowed categories
-const allowedCategories = ['Utilities', 'Groceries', 'Rent', 'Transportation', 'Entertainment', 'Healthcare', 'Savings', 'Other'];
+const allowedCategories = ['Utilities', 'Groceries', 'Rent', 'Transportation', 'Entertainment', 'Healthcare', 'Dining', 'Other'];
+const allowedMonths = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 const budgetSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     category: { 
         type: String, 
         required: true,
-        enum: allowedCategories  // Add enum here
+        enum: allowedCategories
     },
     limit: { type: Number, required: true, min: 0 },
+    month: { 
+        type: String, 
+        required: true,
+        enum: allowedMonths // Use string values for months
+    },
+    year: { 
+        type: Number, 
+        required: true, 
+        default: () => new Date().getFullYear() // Default to current year
+    },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Budget', budgetSchema);

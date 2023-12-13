@@ -1,25 +1,22 @@
-require('dotenv').config(); // This line should be at the top
 const mongoose = require('mongoose');
-const Income = require('./models/Income'); // Adjust the path as per your project structure
+const Item = require('./models/User');  // Adjust the path to your Item model
 
-// Use the MongoDB Connection String from .env file
-const dbConnection = process.env.MONGODB_URI;
+// MongoDB Connection String
+const dbConnection = 'mongodb+srv://arjunn2139:Mynameisarjun1@financedashboardcluster.mu2ecgn.mongodb.net/?retryWrites=true&w=majority';
 
 mongoose.connect(dbConnection, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.error('MongoDB connection error:', err));
 
-// Query to get all incomes
-const queryAllIncomes = async () => {
+const deleteAllItems = async () => {
     try {
-        const incomes = await Income.find();
-        console.log('All Incomes:', incomes);
-    } catch (err) {
-        console.error('Error fetching incomes:', err);
+        await Item.deleteMany({});
+        console.log('All items deleted.');
+    } catch (error) {
+        console.error('Error occurred in deleteMany:', error);
     } finally {
         mongoose.disconnect();
     }
 };
 
-// Run the query function
-queryAllIncomes();
+deleteAllItems();
