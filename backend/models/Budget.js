@@ -23,4 +23,7 @@ const budgetSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 
+// Compound index to ensure uniqueness for combination of user, category, month, and year
+budgetSchema.index({ user: 1, category: 1, month: 1, year: 1 }, { unique: true });
+
 module.exports = mongoose.model('Budget', budgetSchema);
